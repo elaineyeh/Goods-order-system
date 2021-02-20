@@ -7,3 +7,6 @@ class Good(models.Model):
     price = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework_simplejwt.views import (
     token_obtain_pair,
     token_refresh,
@@ -27,6 +27,7 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAdminUser
 
 from .settings import SHOW_ADMIN, SHOW_DOCS
+from .view import root
 
 SchemaView = get_schema_view(
     openapi.Info(title="Response API", default_version='v1'),
@@ -38,7 +39,9 @@ SchemaView = get_schema_view(
 urlpatterns = [
     path('token', token_obtain_pair, name='token-create'),
     path('token/refresh', token_refresh, name='token-refersh'),
-    path('token/verify', token_verify, name='token-name')
+    path('token/verify', token_verify, name='token-name'),
+    path('api/', include('app.urls')),
+    path('', root, name='root')
 ]
 if SHOW_ADMIN:
     urlpatterns.append(path('admin', admin.site.urls))

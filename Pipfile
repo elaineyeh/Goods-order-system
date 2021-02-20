@@ -13,6 +13,7 @@ djangorestframework-simplejwt = "*"
 psycopg2-binary = "*"
 django-rest-swagger = "*"
 drf-yasg = "*"
+drf-nested-routers = "*"
 
 [requires]
 python_version = "3.8"
